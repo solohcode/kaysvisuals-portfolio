@@ -113,13 +113,13 @@ const Footer = ({ editable }: Props) => {
       >
         <Form onFinish={handleForm} layout="vertical" form={form}>
           <Form.Item label="Auth Email" name="email">
-            <Input placeholder="Enter auth email" size="large" type="email" />
+            <Input required placeholder="Enter auth email" size="large" type="email" />
           </Form.Item>
           <Form.Item label="Auth Password" name="password">
-            <Input.Password placeholder="Enter auth password" size="large" />
+            <Input.Password required placeholder="Enter auth password" size="large" />
           </Form.Item>
           <Form.Item hidden={!isCanEdit} label="Contact Number" name="phone">
-            <Input placeholder="Enter contact number" size="large" />
+            <Input required placeholder="Enter contact number" size="large" />
           </Form.Item>
           <Button loading={putProfileLoad} className="bg-tertiary" type="primary" htmlType="submit" size="large" block>{isCanEdit? "Save" : "Authenticate"}</Button>
         </Form>

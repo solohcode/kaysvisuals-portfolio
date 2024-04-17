@@ -147,27 +147,27 @@ const Education = ({ editable }: Props) => {
         <div hidden={!isCanEdit} className="w-full">
           <Form onFinish={handleSubmit} layout="inline" hidden={!isCanEdit} form={form} className="p-5 grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 gap-5">
             <Form.Item name="title">
-              <Input className="placeholder:!text-black" placeholder="Enter education title" />
+              <Input required className="placeholder:!text-black" placeholder="Enter education title" />
             </Form.Item>
             <Form.Item name="field">
-              <Input className="placeholder:!text-black" placeholder="Enter field of study" />
+              <Input required className="placeholder:!text-black" placeholder="Enter field of study" />
             </Form.Item>
             <Form.Item name="institution_name">
-              <Input className="placeholder:!text-black" placeholder="Enter institution's name" />
+              <Input required className="placeholder:!text-black" placeholder="Enter institution's name" />
             </Form.Item>
             <Form.Item name="start_year">
-              <Input className="placeholder:!text-black" placeholder="Enter start year" />
+              <Input required className="placeholder:!text-black" placeholder="Enter start year" />
             </Form.Item>
             <Form.Item name="end_year">
-              <Input className="placeholder:!text-black" placeholder="Enter end year" />
+              <Input required className="placeholder:!text-black" placeholder="Enter end year" />
             </Form.Item>
             <Form.Item name="institution_logo" className="!flex justify-between items-center">
-              <Input className="placeholder:!text-black" placeholder="Enter institution's logo / icon url" value={payload?.institution_logo} onChange={({target:{value:institution_logo}}) => setPayload({...payload, institution_logo})} />
+              <Input required className="placeholder:!text-black" placeholder="Enter institution's logo / icon url" value={payload?.institution_logo} onChange={({target:{value:institution_logo}}) => setPayload({...payload, institution_logo})} />
               <Divider className="!border-white !text-white">OR</Divider>
-              <Input className="placeholder:!text-black" placeholder="Enter institution's logo / icon" type="file" onChange={({target:{files}}) => getBase64(files?.[0] as any).then((institution_logo: any) => setPayload({...payload, institution_logo}))} />
+              <Input required={!payload?.institution_logo} className="placeholder:!text-black" placeholder="Enter institution's logo / icon" type="file" onChange={({target:{files}}) => getBase64(files?.[0] as any).then((institution_logo: any) => setPayload({...payload, institution_logo}))} />
             </Form.Item>
             <Form.Item name="description">
-              <Input.TextArea className="placeholder:!text-black" placeholder="Enter description" rows={5} />
+              <Input.TextArea required className="placeholder:!text-black" placeholder="Enter description" rows={5} />
             </Form.Item>
             <Tooltip title="Click to save">
               <Button loading={actionLoad} className="bg-secondary" type="primary" htmlType="submit" icon={<FiSave />} />

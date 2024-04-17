@@ -59,15 +59,15 @@ const Tech = ({ editable }: Props) => {
         </div>
         <Form onFinish={handleSubmit} layout="inline" hidden={!isCanEdit} className="my-5">
           <Form.Item name="name">
-            <Input className="placeholder:!text-black" placeholder="Enter skill name" />
+            <Input required className="placeholder:!text-black" placeholder="Enter skill name" />
           </Form.Item>
           <Form.Item name="icon" className="!flex justify-between items-center">
-            <Input className="placeholder:!text-black" placeholder="Enter skill's logo / icon url" value={payload?.icon} onChange={({target:{value:icon}}) => setPayload({...payload, icon})} />
+            <Input required className="placeholder:!text-black" placeholder="Enter skill's logo / icon url" value={payload?.icon} onChange={({target:{value:icon}}) => setPayload({...payload, icon})} />
             <Divider className="!border-white !text-white">OR</Divider>
-            <Input className="placeholder:!text-black" placeholder="Enter skill's logo / icon" type="file" onChange={({target:{files}}) => getBase64(files?.[0] as any).then((icon: any) => setPayload({...payload, icon}))} />
+            <Input required={!payload?.icon} className="placeholder:!text-black" placeholder="Enter skill's logo / icon" type="file" onChange={({target:{files}}) => getBase64(files?.[0] as any).then((icon: any) => setPayload({...payload, icon}))} />
           </Form.Item>
           <Form.Item name="start_year">
-            <Input className="placeholder:!text-black" placeholder="Enter start year" />
+            <Input required className="placeholder:!text-black" placeholder="Enter start year" />
           </Form.Item>
           <Tooltip title="Click to save">
             <Button loading={postSkillLoad} className="bg-secondary" type="primary" htmlType="submit" icon={<FiSave />} />

@@ -101,7 +101,7 @@ const About = ({ editable }: Props) => {
         {isCanEdit ? (
           <Form onFinish={handleSubmit} layout="vertical" form={form} hidden={!isCanEdit}>
             <Form.Item name="overview">
-              <Input.TextArea rows={5} placeholder="Enter profile overview" />
+              <Input.TextArea required rows={5} placeholder="Enter profile overview" />
             </Form.Item>
             <Tooltip title="Click to save">
               <Button loading={putProfileLoad} className="bg-secondary" type="primary" htmlType="submit" icon={<FiSave />} />
@@ -136,10 +136,10 @@ const About = ({ editable }: Props) => {
 
         <Form onFinish={postStackAction} layout="inline" hidden={!isCanEdit} className="my-5">
           <Form.Item name="name">
-            <Input className="placeholder:!text-black" placeholder="Enter stack name" />
+            <Input required className="placeholder:!text-black" placeholder="Enter stack name" />
           </Form.Item>
           <Form.Item name="start_year">
-            <Input className="placeholder:!text-black" placeholder="Enter start year" />
+            <Input required className="placeholder:!text-black" placeholder="Enter start year" />
           </Form.Item>
           <Tooltip title="Click to save">
             <Button loading={postStackLoad} className="bg-secondary" type="primary" htmlType="submit" icon={<FiSave />} />

@@ -94,7 +94,7 @@ const Hero = ({ editable }: Props) => {
               </div>
               <Form onFinish={handleSubmit} layout="inline" hidden={!isCanEdit}>
                 <Form.Item name="intro">
-                  <Input className="placeholder:!text-black" placeholder="Enter intro text" />
+                  <Input required className="placeholder:!text-black" placeholder="Enter intro text" />
                 </Form.Item>
                 <Tooltip title="Click to save">
                   <Button loading={putProfileLoad} className="bg-secondary" type="primary" htmlType="submit" icon={<FiSave />} />
@@ -125,10 +125,10 @@ const Hero = ({ editable }: Props) => {
               </div>
               <Form onFinish={postSocialAction} layout="inline" hidden={!isCanEdit}>
                 <Form.Item name="name">
-                  <Input className="placeholder:!text-black" placeholder="Enter social media name" />
+                  <Input required className="placeholder:!text-black" placeholder="Enter social media name" />
                 </Form.Item>
                 <Form.Item name="url">
-                  <Input className="placeholder:!text-black" placeholder="Enter social media url" />
+                  <Input required className="placeholder:!text-black" placeholder="Enter social media url" />
                 </Form.Item>
                 <Tooltip title="Click to save">
                   <Button loading={postSocialLoad} className="bg-secondary" type="primary" htmlType="submit" icon={<FiSave />} />

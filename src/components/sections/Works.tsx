@@ -154,7 +154,7 @@ const Works = ({ editable }: Props) => {
         {isCanEdit ? (
           <Form onFinish={handleUpdate} layout="vertical" form={form} hidden={!isCanEdit}>
             <Form.Item name="project_headline">
-              <Input.TextArea rows={5} placeholder="Enter project headline" />
+              <Input.TextArea required rows={5} placeholder="Enter project headline" />
             </Form.Item>
             <Tooltip title="Click to save">
               <Button loading={putProfileLoad} className="bg-secondary" type="primary" htmlType="submit" icon={<FiSave />} />
@@ -196,21 +196,21 @@ const Works = ({ editable }: Props) => {
         <div hidden={!isCanEdit} className="w-full">
           <Form onFinish={handleSubmit} layout="inline" hidden={!isCanEdit} form={form} className="my-5 grid grid-cols-1 sm:grid-cols-3 gap-5">
             <Form.Item name="name">
-              <Input className="placeholder:!text-black" placeholder="Enter project name" />
+              <Input required className="placeholder:!text-black" placeholder="Enter project name" />
             </Form.Item>
             <Form.Item name="url">
-              <Input className="placeholder:!text-black" placeholder="Enter project url" />
+              <Input required className="placeholder:!text-black" placeholder="Enter project url" />
             </Form.Item>
             <Form.Item name="skills">
               <Select className="placeholder:!text-black" placeholder="Enter project skills" mode="tags" />
             </Form.Item>
             <Form.Item name="image" className="!flex justify-between items-center">
-              <Input className="placeholder:!text-black" placeholder="Enter project's image url" value={payload?.image} onChange={({target:{value:image}}) => setPayload({...payload, image})} />
+              <Input required className="placeholder:!text-black" placeholder="Enter project's image url" value={payload?.image} onChange={({target:{value:image}}) => setPayload({...payload, image})} />
               <Divider className="!border-white !text-white">OR</Divider>
-              <Input className="placeholder:!text-black" placeholder="Enter company's logo / icon" type="file" onChange={({target:{files}}) => getBase64(files?.[0] as any).then((image: any) => setPayload({...payload, image}))} />
+              <Input required={!payload?.image} className="placeholder:!text-black" placeholder="Enter company's logo / icon" type="file" onChange={({target:{files}}) => getBase64(files?.[0] as any).then((image: any) => setPayload({...payload, image}))} />
             </Form.Item>
             <Form.Item name="description">
-              <Input.TextArea className="placeholder:!text-black" placeholder="Enter project description" rows={5} />
+              <Input.TextArea required className="placeholder:!text-black" placeholder="Enter project description" rows={5} />
             </Form.Item>
             <Tooltip title="Click to save">
               <Button loading={actionLoad} className="bg-secondary" type="primary" htmlType="submit" icon={<FiSave />} />

@@ -114,7 +114,7 @@ const Experience = ({ editable }: Props) => {
   }
 
   const handleSubmit = (data: any) => {
-    const payData = {...payload, ...data}
+    const payData = {...data, ...payload}
     if (payData?.id) return putExperienceAction(payData)
     postExperienceAction(payData)
   }
@@ -149,27 +149,27 @@ const Experience = ({ editable }: Props) => {
         <div hidden={!isCanEdit} className="w-full">
           <Form onFinish={handleSubmit} layout="inline" hidden={!isCanEdit} form={form} className="my-5 grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 gap-5">
             <Form.Item name="title">
-              <Input className="placeholder:!text-black" placeholder="Enter job title" />
+              <Input required className="placeholder:!text-black" placeholder="Enter job title" />
             </Form.Item>
             <Form.Item name="company_name">
-              <Input className="placeholder:!text-black" placeholder="Enter company's name" />
+              <Input required className="placeholder:!text-black" placeholder="Enter company's name" />
             </Form.Item>
             <Form.Item name="company_url">
-              <Input className="placeholder:!text-black" placeholder="Enter company's website url" />
+              <Input required className="placeholder:!text-black" placeholder="Enter company's website url" />
             </Form.Item>
             <Form.Item name="start_date">
-              <Input className="placeholder:!text-black" placeholder="Enter start date" />
+              <Input required className="placeholder:!text-black" placeholder="Enter start date" />
             </Form.Item>
             <Form.Item name="end_date">
-              <Input className="placeholder:!text-black" placeholder="Enter end date" />
+              <Input required className="placeholder:!text-black" placeholder="Enter end date" />
             </Form.Item>
             <Form.Item name="company_logo" className="!flex justify-between items-center">
-              <Input className="placeholder:!text-black" placeholder="Enter company's logo / icon url" value={payload?.company_logo} onChange={({target:{value:company_logo}}) => setPayload({...payload, company_logo})} />
+              <Input required className="placeholder:!text-black" placeholder="Enter company's logo / icon url" value={payload?.company_logo} onChange={({target:{value:company_logo}}) => setPayload({...payload, company_logo})} />
               <Divider className="!border-white !text-white">OR</Divider>
-              <Input className="placeholder:!text-black" placeholder="Enter company's logo / icon" type="file" onChange={({target:{files}}) => getBase64(files?.[0] as any).then((company_logo: any) => setPayload({...payload, company_logo}))} />
+              <Input required={!payload?.company_logo} className="placeholder:!text-black" placeholder="Enter company's logo / icon" type="file" onChange={({target:{files}}) => getBase64(files?.[0] as any).then((company_logo: any) => setPayload({...payload, company_logo}))} />
             </Form.Item>
             <Form.Item name="description">
-              <Input.TextArea className="placeholder:!text-black" placeholder="Enter job description" rows={5} />
+              <Input.TextArea required className="placeholder:!text-black" placeholder="Enter job description" rows={5} />
             </Form.Item>
             <Tooltip title="Click to save">
               <Button loading={actionLoad} className="bg-secondary" type="primary" htmlType="submit" icon={<FiSave />} />

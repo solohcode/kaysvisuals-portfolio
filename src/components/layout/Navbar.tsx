@@ -87,10 +87,10 @@ const Navbar = ({ editable }: Props) => {
           {isCanEdit ? (
             <Form onFinish={handleUpdate} initialValues={getProfileData} form={form} layout="inline">
               <Form.Item name="first_name">
-                <Input className="placeholder:!text-black" placeholder="Enter first name" />
+                <Input required className="placeholder:!text-black" placeholder="Enter first name" />
               </Form.Item>
               <Form.Item name="last_name">
-                <Input className="placeholder:!text-black" placeholder="Enter last name" />
+                <Input required className="placeholder:!text-black" placeholder="Enter last name" />
               </Form.Item>
               <Tooltip title="Click to save">
                 <Button loading={putProfileLoad} className="bg-secondary" type="primary" htmlType="submit" icon={<FiSave />} />
