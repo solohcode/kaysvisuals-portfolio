@@ -9,6 +9,7 @@ import { useState } from "react";
 import { useDeleteSkill, useGetAllSkills, usePostSkill } from "../../hooks/skill";
 import { GoTrash } from "react-icons/go";
 import { FiSave } from "react-icons/fi";
+import { getBase64 } from "../../hooks/config";
 
 const Tech = ({ editable }: Props) => {
   const [payload, setPayload] = useState({ icon: "" });
@@ -63,7 +64,7 @@ const Tech = ({ editable }: Props) => {
           <Form.Item name="icon" className="!flex justify-between items-center">
             <Input className="placeholder:!text-black" placeholder="Enter skill's logo / icon url" value={payload?.icon} onChange={({target:{value:icon}}) => setPayload({...payload, icon})} />
             <Divider className="!border-white !text-white">OR</Divider>
-            <Input className="placeholder:!text-black" placeholder="Enter skill's logo / icon" type="file" onChange={({target:{files}}) => setPayload({...payload, icon: URL.createObjectURL(files?.[0] as Blob)})} />
+            <Input className="placeholder:!text-black" placeholder="Enter skill's logo / icon" type="file" onChange={({target:{files}}) => getBase64(files?.[0] as any).then((icon: any) => setPayload({...payload, icon}))} />
           </Form.Item>
           <Form.Item name="start_year">
             <Input className="placeholder:!text-black" placeholder="Enter start year" />

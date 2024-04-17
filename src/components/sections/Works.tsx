@@ -18,6 +18,7 @@ import { useDeleteProject, useGetAllProjects, usePostProject, usePutProject } fr
 import { useState } from "react";
 import { FaEdit } from "react-icons/fa";
 import { GoTrash } from "react-icons/go";
+import { getBase64 } from "../../hooks/config";
 
 const ProjectCard: React.FC<{ index: number } & TProject> = ({
   index,
@@ -206,7 +207,7 @@ const Works = ({ editable }: Props) => {
             <Form.Item name="image" className="!flex justify-between items-center">
               <Input className="placeholder:!text-black" placeholder="Enter project's image url" value={payload?.image} onChange={({target:{value:image}}) => setPayload({...payload, image})} />
               <Divider className="!border-white !text-white">OR</Divider>
-              <Input className="placeholder:!text-black" placeholder="Enter company's logo / icon" type="file" onChange={({target:{files}}) => setPayload({...payload, image: URL.createObjectURL(files?.[0] as Blob)})} />
+              <Input className="placeholder:!text-black" placeholder="Enter company's logo / icon" type="file" onChange={({target:{files}}) => getBase64(files?.[0] as any).then((image: any) => setPayload({...payload, image}))} />
             </Form.Item>
             <Form.Item name="description">
               <Input.TextArea className="placeholder:!text-black" placeholder="Enter project description" rows={5} />

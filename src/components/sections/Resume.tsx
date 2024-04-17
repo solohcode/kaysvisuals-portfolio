@@ -9,6 +9,7 @@ import { FiSave } from "react-icons/fi";
 import { useRecoilValue } from "recoil";
 import authAtom from "../../atoms/auth/auth.atom";
 import { useGetProfile, usePutProfile } from "../../hooks/profile";
+import { getBase64 } from "../../hooks/config";
 
 const Resume = ({ editable }: Props) => {
   const [payload, setPayload] = useState({ resume: "" });
@@ -64,7 +65,7 @@ const Resume = ({ editable }: Props) => {
             <Form.Item name="resume" className="!flex justify-between items-center">
               <Input className="placeholder:!text-black" placeholder="Enter resumes url" value={payload?.resume} onChange={({target:{value:resume}}) => setPayload({...payload, resume})} />
               <Divider className="!border-white !text-white">OR</Divider>
-              <Input className="placeholder:!text-black" placeholder="Enter resumes" type="file" onChange={({target:{files}}) => setPayload({...payload, resume: URL.createObjectURL(files?.[0] as Blob)})} />
+              <Input className="placeholder:!text-black" placeholder="Enter resumes" type="file" onChange={({target:{files}}) => getBase64(files?.[0] as any).then((resume: any) => setPayload({...payload, resume}))} />
             </Form.Item>
             <Tooltip title="Click to save">
               <Button loading={putProfileLoad} className="bg-secondary" type="primary" htmlType="submit" icon={<FiSave />} />

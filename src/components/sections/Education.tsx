@@ -15,6 +15,7 @@ import authAtom from "../../atoms/auth/auth.atom";
 import { useDeleteEducation, useGetAllEducations, usePostEducation, usePutEducation } from "../../hooks/education";
 import { FaEdit } from "react-icons/fa";
 import { GoTrash } from "react-icons/go";
+import { getBase64 } from "../../hooks/config";
 
 const EducationCard: React.FC<{ index: number } & TTestimonial> = ({
   index,
@@ -163,7 +164,7 @@ const Education = ({ editable }: Props) => {
             <Form.Item name="institution_logo" className="!flex justify-between items-center">
               <Input className="placeholder:!text-black" placeholder="Enter institution's logo / icon url" value={payload?.institution_logo} onChange={({target:{value:institution_logo}}) => setPayload({...payload, institution_logo})} />
               <Divider className="!border-white !text-white">OR</Divider>
-              <Input className="placeholder:!text-black" placeholder="Enter institution's logo / icon" type="file" onChange={({target:{files}}) => setPayload({...payload, institution_logo: URL.createObjectURL(files?.[0] as Blob)})} />
+              <Input className="placeholder:!text-black" placeholder="Enter institution's logo / icon" type="file" onChange={({target:{files}}) => getBase64(files?.[0] as any).then((institution_logo: any) => setPayload({...payload, institution_logo}))} />
             </Form.Item>
             <Form.Item name="description">
               <Input.TextArea className="placeholder:!text-black" placeholder="Enter description" rows={5} />

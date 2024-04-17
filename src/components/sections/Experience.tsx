@@ -19,6 +19,7 @@ import { useRecoilValue } from "recoil";
 import { Props } from "../layout/Navbar";
 import { Button, Divider, Form, Input, Spin, Tooltip } from "antd";
 import { FaEdit } from "react-icons/fa";
+import { getBase64 } from "../../hooks/config";
 
 const ExperienceCard: React.FC<TExperience> = (experience) => {
   return (
@@ -165,7 +166,7 @@ const Experience = ({ editable }: Props) => {
             <Form.Item name="company_logo" className="!flex justify-between items-center">
               <Input className="placeholder:!text-black" placeholder="Enter company's logo / icon url" value={payload?.company_logo} onChange={({target:{value:company_logo}}) => setPayload({...payload, company_logo})} />
               <Divider className="!border-white !text-white">OR</Divider>
-              <Input className="placeholder:!text-black" placeholder="Enter company's logo / icon" type="file" onChange={({target:{files}}) => setPayload({...payload, company_logo: URL.createObjectURL(files?.[0] as Blob)})} />
+              <Input className="placeholder:!text-black" placeholder="Enter company's logo / icon" type="file" onChange={({target:{files}}) => getBase64(files?.[0] as any).then((company_logo: any) => setPayload({...payload, company_logo}))} />
             </Form.Item>
             <Form.Item name="description">
               <Input.TextArea className="placeholder:!text-black" placeholder="Enter job description" rows={5} />
