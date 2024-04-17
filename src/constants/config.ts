@@ -34,19 +34,21 @@ type TConfig = {
     about: Required<TSection>;
     experience: TSection;
     feedbacks: TSection;
+    education: TSection;
+    resume: TSection;
     works: Required<TSection>;
   };
 };
 
 export const config: TConfig = {
   html: {
-    title: "John Doe — 3D Portfolio",
-    fullName: "John Doe",
-    email: "johndoe@mail.com",
+    title: "Qudus Odupitan",
+    fullName: "O. Qudus",
+    email: "qudusodupitan@gmail.com",
   },
   hero: {
-    name: "John Doe",
-    p: ["I develop 3D visuals, user", "interfaces and web applications"],
+    name: "Qudus",
+    p: ["I am a data scientist", "I design and develop softwares"],
   },
   contact: {
     p: "Get in touch",
@@ -80,6 +82,14 @@ export const config: TConfig = {
     feedbacks: {
       p: "What others say",
       h2: "Testimonials.",
+    },
+    education: {
+      p: "My Education History",
+      h2: "Education.",
+    },
+    resume: {
+      p: "My Resume Document",
+      h2: "Resume.",
     },
     works: {
       p: "My work",

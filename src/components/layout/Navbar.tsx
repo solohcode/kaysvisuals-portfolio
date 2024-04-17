@@ -1,15 +1,40 @@
+import { useRecoilValue } from "recoil";
+import { FiSave } from "react-icons/fi";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { Button, Form, Input, Tooltip } from "antd";
 
+// import { logo, menu, close } from "../../assets";
+import { useGetProfile, usePutProfile } from "../../hooks/profile";
+// import { config } from "../../constants/config";
+import authAtom from "../../atoms/auth/auth.atom";
 import { styles } from "../../constants/styles";
 import { navLinks } from "../../constants";
-import { logo, menu, close } from "../../assets";
-import { config } from "../../constants/config";
+import { menu, close } from "../../assets";
 
-const Navbar = () => {
+
+export type Props = {
+  editable?: boolean
+}
+const Navbar = ({ editable }: Props) => {
   const [active, setActive] = useState<string | null>();
-  const [toggle, setToggle] = useState(false);
+  const { isEditMode } = useRecoilValue(authAtom);
   const [scrolled, setScrolled] = useState(false);
+  const [toggle, setToggle] = useState(false);
+  const [form] = Form.useForm();
+
+  const isCanEdit = (isEditMode && editable);
+
+  const {
+    data: getProfileData,
+    refetch: getProfileFetch,
+    // isLoading: getProfileLoad,
+  } = useGetProfile((res: any) => form.setFieldsValue(res))
+
+  const {
+    mutate: putProfileAction,
+    isLoading: putProfileLoad,
+  } = usePutProfile(getProfileFetch)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -48,6 +73,7 @@ const Navbar = () => {
     };
   }, []);
 
+  const handleUpdate = (data: any) => putProfileAction({...getProfileData, ...data})
   return (
     <nav
       className={`${
@@ -57,20 +83,36 @@ const Navbar = () => {
       }`}
     >
       <div className="mx-auto flex w-full max-w-7xl items-center justify-between">
-        <Link
-          to="/"
-          className="flex items-center gap-2"
-          onClick={() => {
-            window.scrollTo(0, 0);
-          }}
-        >
-          <img src={logo} alt="logo" className="h-9 w-9 object-contain" />
-          <p className="flex cursor-pointer text-[18px] font-bold text-white ">
-            {config.html.title}
-          </p>
-        </Link>
+        <div>
+          {isCanEdit ? (
+            <Form onFinish={handleUpdate} initialValues={getProfileData} form={form} layout="inline">
+              <Form.Item name="first_name">
+                <Input className="placeholder:!text-black" placeholder="Enter first name" />
+              </Form.Item>
+              <Form.Item name="last_name">
+                <Input className="placeholder:!text-black" placeholder="Enter last name" />
+              </Form.Item>
+              <Tooltip title="Click to save">
+                <Button loading={putProfileLoad} className="bg-secondary" type="primary" htmlType="submit" icon={<FiSave />} />
+              </Tooltip>
+            </Form>
+          ) : (
+            <Link
+              to={editable ? "/admin" : "/"}
+              className="flex items-center gap-2"
+              onClick={() => {
+                window.scrollTo(0, 0);
+              }}
+            >
+              {/* <img src={logo} alt="logo" className="h-9 w-9 object-contain" /> */}
+              <p className="flex cursor-pointer text-[18px] font-bold text-white ">
+                {`${getProfileData?.first_name || "Qudus"} ${getProfileData?.last_name || "Odupitan"}`}
+              </p>
+            </Link>
+          )}
+        </div>
 
-        <ul className="hidden list-none flex-row gap-10 sm:flex">
+        <ul className="hidden list-none flex-row gap-10 sm:flex items-center">
           {navLinks.map((nav) => (
             <li
               key={nav.id}

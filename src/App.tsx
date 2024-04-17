@@ -1,18 +1,16 @@
-import { BrowserRouter } from "react-router-dom";
+import { RecoilRoot } from "recoil";
+import { Suspense, lazy } from "react";
+import { TbFidgetSpinner } from "react-icons/tb";
+import { QueryClient, QueryClientProvider } from "react-query";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import {
-  About,
-  Contact,
-  Experience,
-  Feedbacks,
-  Hero,
-  Navbar,
-  Tech,
-  Works,
-  StarsCanvas,
-} from "./components";
 import { useEffect } from "react";
 import { config } from "./constants/config";
+
+const HomePage = lazy(() => import("./pages/home"))
+const AdminPage = lazy(() => import("./pages/admin"))
+
+const queryClient = new QueryClient()
 
 const App = () => {
   useEffect(() => {
@@ -21,24 +19,41 @@ const App = () => {
     }
   }, []);
 
+  const routes = [
+    {
+      path: "/",
+      component: <HomePage />,
+    },
+    {
+      path: "/admin",
+      component: <AdminPage />,
+    },
+  ]
+
   return (
-    <BrowserRouter>
-      <div className="bg-primary relative z-0">
-        <div className="bg-hero-pattern bg-cover bg-center bg-no-repeat">
-          <Navbar />
-          <Hero />
-        </div>
-        <About />
-        <Experience />
-        <Tech />
-        <Works />
-        <Feedbacks />
-        <div className="relative z-0">
-          <Contact />
-          <StarsCanvas />
-        </div>
-      </div>
-    </BrowserRouter>
+    <RecoilRoot>
+      <QueryClientProvider client={queryClient}>
+        <BrowserRouter basename='/'>
+          <Routes>
+            {routes.map(({ path, component }) => {
+              return (
+                <Route
+                  key={path}
+                  path={path}
+                  element={<Suspense
+                    fallback={<div className="w-full h-screen flex justify-center items-center">
+                      <TbFidgetSpinner className="animate-spin !text-5xl text-white" />
+                    </div>}
+                  >
+                    {component}
+                  </Suspense>}
+                />
+              );
+            })}
+          </Routes>
+        </BrowserRouter>
+      </QueryClientProvider>
+    </RecoilRoot>
   );
 };
 

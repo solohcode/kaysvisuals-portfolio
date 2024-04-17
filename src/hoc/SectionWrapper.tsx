@@ -11,7 +11,7 @@ const SectionWrapper = (
   Component: Props["Component"],
   idName: Props["idName"]
 ) =>
-  function HOC() {
+  function HOC({ editable }: { editable?: boolean }) {
     return (
       <motion.section
         initial="hidden"
@@ -22,7 +22,7 @@ const SectionWrapper = (
       >
         <span className="hash-span">&nbsp;</span>
 
-        <Component />
+        <Component editable={editable} />
       </motion.section>
     );
   };

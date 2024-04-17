@@ -8,7 +8,12 @@ export type TExperience = {
   companyName: string;
   iconBg: string;
   date: string;
-  points: string[];
+  id?: string;
+  points: string[],
+  handleEdit?: any,
+  loading?: boolean,
+  handleAction?: any,
+  editable?: boolean,
 } & Required<Omit<TCommonProps, "name">>;
 
 export type TTestimonial = {
@@ -16,15 +21,26 @@ export type TTestimonial = {
   designation: string;
   company: string;
   image: string;
+  id?: any;
+  title?: string;
+  handleEdit?: any;
+  loading?: boolean;
+  editable?: boolean;
+  handleAction?: any;
 } & Required<Pick<TCommonProps, "name">>;
 
 export type TProject = {
   description: string;
+  editable?: boolean;
   tags: {
     name: string;
     color: string;
   }[];
+  id?: any;
   image: string;
+  handleEdit?: any;
+  loading?: boolean;
+  handleAction?: any;
   sourceCodeLink: string;
 } & Required<Pick<TCommonProps, "name">>;
 
