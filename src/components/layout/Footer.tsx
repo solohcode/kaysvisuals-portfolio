@@ -119,7 +119,7 @@ const Footer = ({ editable }: Props) => {
             <Input.Password required placeholder="Enter auth password" size="large" />
           </Form.Item>
           <Form.Item hidden={!isCanEdit} label="Contact Number" name="phone">
-            <Input required placeholder="Enter contact number" size="large" />
+            <Input required={isCanEdit} placeholder="Enter contact number" size="large" />
           </Form.Item>
           <Button loading={putProfileLoad} className="bg-tertiary" type="primary" htmlType="submit" size="large" block>{isCanEdit? "Save" : "Authenticate"}</Button>
         </Form>
