@@ -20,6 +20,7 @@ import { Props } from "../layout/Navbar";
 import { Button, Divider, Form, Input, Spin, Tooltip } from "antd";
 import { FaEdit } from "react-icons/fa";
 import { getBase64 } from "../../hooks/config";
+import { handleObject } from "../../utils/utils";
 
 const ExperienceCard: React.FC<TExperience> = (experience) => {
   return (
@@ -114,7 +115,7 @@ const Experience = ({ editable }: Props) => {
   }
 
   const handleSubmit = (data: any) => {
-    const payData = {...data, ...payload}
+    const payData = handleObject({...data, ...payload})
     if (payData?.id) return putExperienceAction(payData)
     postExperienceAction(payData)
   }

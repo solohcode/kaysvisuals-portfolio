@@ -16,6 +16,7 @@ import { ComputersCanvas } from "../canvas";
 import { Props } from "../layout/Navbar";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { handleObject } from "../../utils/utils";
 
 const Hero = ({ editable }: Props) => {
   const { isEditMode } = useRecoilValue(authAtom);
@@ -46,8 +47,8 @@ const Hero = ({ editable }: Props) => {
     isLoading: putProfileLoad,
   } = usePutProfile(getProfileFetch)
 
-  const handleIntro = (intro: string) => putProfileAction({...getProfileData, intro: intros.filter((d: any) => (d?.toLowerCase() !== intro?.toLowerCase()))} as any)
-  const handleSubmit = (data: any) => putProfileAction({...getProfileData, intro: [...intros, data?.intro]} as any)
+  const handleIntro = (intro: string) => putProfileAction(handleObject({...getProfileData, intro: intros.filter((d: any) => (d?.toLowerCase() !== intro?.toLowerCase()))}) as any)
+  const handleSubmit = (data: any) => putProfileAction(handleObject({...getProfileData, intro: [...intros, data?.intro]}) as any)
   
   const {
     isLoading: getSocialsLoad,

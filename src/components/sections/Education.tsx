@@ -16,6 +16,7 @@ import { useDeleteEducation, useGetAllEducations, usePostEducation, usePutEducat
 import { FaEdit } from "react-icons/fa";
 import { GoTrash } from "react-icons/go";
 import { getBase64 } from "../../hooks/config";
+import { handleObject } from "../../utils/utils";
 
 const EducationCard: React.FC<{ index: number } & TTestimonial> = ({
   index,
@@ -107,7 +108,7 @@ const Education = ({ editable }: Props) => {
   }
 
   const handleSubmit = (data: any) => {
-    const payData = {...payload, ...data}
+    const payData = handleObject({...payload, ...data})
     if (payData?.id) return putEducationAction(payData)
     postEducationAction(payData)
   }

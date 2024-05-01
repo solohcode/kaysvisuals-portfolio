@@ -1,0 +1,1 @@
+export const handleObject = (data: any) => Object.fromEntries(Object.entries(data||{})?.filter(([, val]) => val))

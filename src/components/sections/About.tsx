@@ -15,6 +15,7 @@ import { Button, Form, Input, Spin, Tooltip } from "antd";
 import authAtom from "../../atoms/auth/auth.atom";
 import { Props } from "../layout/Navbar";
 import { useRecoilValue } from "recoil";
+import { handleObject } from "../../utils/utils";
 
 interface IServiceCard {
   editable?: boolean;
@@ -92,7 +93,7 @@ const About = ({ editable }: Props) => {
     isLoading: deleteStackLoad,
   } = useDeleteStack(getStacksFetch)
 
-  const handleSubmit = (data: any) => putProfileAction({...getProfileData, ...data} as any)
+  const handleSubmit = (data: any) => putProfileAction(handleObject({...getProfileData, ...data}) as any)
   return (
     <Spin spinning={getProfileLoad}>
       <div className="w-full">

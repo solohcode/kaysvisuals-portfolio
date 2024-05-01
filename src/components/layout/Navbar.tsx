@@ -11,6 +11,7 @@ import authAtom from "../../atoms/auth/auth.atom";
 import { styles } from "../../constants/styles";
 import { navLinks } from "../../constants";
 import { menu, close } from "../../assets";
+import { handleObject } from "../../utils/utils";
 
 
 export type Props = {
@@ -73,7 +74,7 @@ const Navbar = ({ editable }: Props) => {
     };
   }, []);
 
-  const handleUpdate = (data: any) => putProfileAction({...getProfileData, ...data})
+  const handleUpdate = (data: any) => putProfileAction(handleObject({...getProfileData, ...data}))
   return (
     <nav
       className={`${

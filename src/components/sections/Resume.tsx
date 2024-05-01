@@ -10,6 +10,7 @@ import { useRecoilValue } from "recoil";
 import authAtom from "../../atoms/auth/auth.atom";
 import { useGetProfile, usePutProfile } from "../../hooks/profile";
 import { getBase64 } from "../../hooks/config";
+import { handleObject } from "../../utils/utils";
 
 const Resume = ({ editable }: Props) => {
   const [payload, setPayload] = useState({ resume: "" });
@@ -35,7 +36,7 @@ const Resume = ({ editable }: Props) => {
   } = usePutProfile(handleSuccess)
 
 
-  const handleSubmit = () => putProfileAction({...getProfileData, ...payload})
+  const handleSubmit = () => putProfileAction(handleObject({...getProfileData, ...payload}))
   return (
     <Spin spinning={getProfileLoad}>
       <div className="bg-black-100 mt-12 rounded-[20px]">

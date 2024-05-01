@@ -19,6 +19,7 @@ import { useState } from "react";
 import { FaEdit } from "react-icons/fa";
 import { GoTrash } from "react-icons/go";
 import { getBase64 } from "../../hooks/config";
+import { handleObject } from "../../utils/utils";
 
 const ProjectCard: React.FC<{ index: number } & TProject> = ({
   index,
@@ -104,7 +105,7 @@ const Works = ({ editable }: Props) => {
     isLoading: putProfileLoad,
   } = usePutProfile(getProfileFetch)
 
-  const handleUpdate = (data: any) => putProfileAction({...getProfileData, ...data} as any)
+  const handleUpdate = (data: any) => putProfileAction(handleObject({...getProfileData, ...data}) as any)
 
   const {
     isLoading: getProjectsLoad,
@@ -139,7 +140,7 @@ const Works = ({ editable }: Props) => {
   }
 
   const handleSubmit = (data: any) => {
-    const payData = {...payload, ...data}
+    const payData = handleObject({...payload, ...data})
     if (payData?.id) return putProjectAction(payData)
     postProjectAction(payData)
   }

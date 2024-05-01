@@ -10,6 +10,7 @@ import { useDeleteSkill, useGetAllSkills, usePostSkill } from "../../hooks/skill
 import { GoTrash } from "react-icons/go";
 import { FiSave } from "react-icons/fi";
 import { getBase64 } from "../../hooks/config";
+import { handleObject } from "../../utils/utils";
 
 const Tech = ({ editable }: Props) => {
   const [payload, setPayload] = useState({ icon: "" });
@@ -39,7 +40,7 @@ const Tech = ({ editable }: Props) => {
     isLoading: deleteSkillLoad,
   } = useDeleteSkill(handleSuccess)
 
-  const handleSubmit = (data: any) => postSkillAction({...data, ...payload})
+  const handleSubmit = (data: any) => postSkillAction(handleObject({...data, ...payload}))
   return (
     <Spin spinning={getSkillsLoad}>
       <div className="w-full">
