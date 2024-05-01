@@ -165,7 +165,7 @@ const Education = ({ editable }: Props) => {
             <Form.Item name="institution_logo" className="!flex justify-between items-center">
               <Input required className="placeholder:!text-black" placeholder="Enter institution's logo / icon url" value={payload?.institution_logo} onChange={({target:{value:institution_logo}}) => setPayload({...payload, institution_logo})} />
               <Divider className="!border-white !text-white">OR</Divider>
-              <Input required={!payload?.institution_logo} className="placeholder:!text-black" placeholder="Enter institution's logo / icon" type="file" onChange={({target:{files}}) => getBase64(files?.[0] as any).then((institution_logo: any) => setPayload({...payload, institution_logo}))} />
+              <Input required={!payload?.institution_logo} className="placeholder:!text-black" placeholder="Enter institution's logo / icon" type="file" onChange={({target:{files}}) => getBase64(files?.[0] as any).then((institution_logo: any) => {setPayload({...payload, institution_logo}); form.setFieldsValue({institution_logo})})} />
             </Form.Item>
             <Form.Item name="description">
               <Input.TextArea required className="placeholder:!text-black" placeholder="Enter description" rows={5} />

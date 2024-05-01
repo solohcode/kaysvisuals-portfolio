@@ -65,7 +65,7 @@ const Tech = ({ editable }: Props) => {
           <Form.Item name="icon" className="!flex justify-between items-center">
             <Input required className="placeholder:!text-black" placeholder="Enter skill's logo / icon url" value={payload?.icon} onChange={({target:{value:icon}}) => setPayload({...payload, icon})} />
             <Divider className="!border-white !text-white">OR</Divider>
-            <Input required={!payload?.icon} className="placeholder:!text-black" placeholder="Enter skill's logo / icon" type="file" onChange={({target:{files}}) => getBase64(files?.[0] as any).then((icon: any) => setPayload({...payload, icon}))} />
+            <Input required={!payload?.icon} className="placeholder:!text-black" placeholder="Enter skill's logo / icon" type="file" onChange={({target:{files}}) => getBase64(files?.[0] as any).then((icon: any) => {setPayload({...payload, icon}); form.setFieldsValue({icon})})} />
           </Form.Item>
           <Form.Item name="start_year">
             <Input required className="placeholder:!text-black" placeholder="Enter start year" />

@@ -208,7 +208,7 @@ const Works = ({ editable }: Props) => {
             <Form.Item name="image" className="!flex justify-between items-center">
               <Input required className="placeholder:!text-black" placeholder="Enter project's image url" value={payload?.image} onChange={({target:{value:image}}) => setPayload({...payload, image})} />
               <Divider className="!border-white !text-white">OR</Divider>
-              <Input required={!payload?.image} className="placeholder:!text-black" placeholder="Enter company's logo / icon" type="file" onChange={({target:{files}}) => getBase64(files?.[0] as any).then((image: any) => setPayload({...payload, image}))} />
+              <Input required={!payload?.image} className="placeholder:!text-black" placeholder="Enter company's logo / icon" type="file" onChange={({target:{files}}) => getBase64(files?.[0] as any).then((image: any) => {setPayload({...payload, image}); form.setFieldsValue({image})})} />
             </Form.Item>
             <Form.Item name="description">
               <Input.TextArea required className="placeholder:!text-black" placeholder="Enter project description" rows={5} />

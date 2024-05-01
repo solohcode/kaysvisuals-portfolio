@@ -167,7 +167,7 @@ const Experience = ({ editable }: Props) => {
             <Form.Item name="company_logo" className="!flex justify-between items-center">
               <Input required className="placeholder:!text-black" placeholder="Enter company's logo / icon url" value={payload?.company_logo} onChange={({target:{value:company_logo}}) => setPayload({...payload, company_logo})} />
               <Divider className="!border-white !text-white">OR</Divider>
-              <Input required={!payload?.company_logo} className="placeholder:!text-black" placeholder="Enter company's logo / icon" type="file" onChange={({target:{files}}) => getBase64(files?.[0] as any).then((company_logo: any) => setPayload({...payload, company_logo}))} />
+              <Input required={!payload?.company_logo} className="placeholder:!text-black" placeholder="Enter company's logo / icon" type="file" onChange={({target:{files}}) => getBase64(files?.[0] as any).then((company_logo: any) => {setPayload({...payload, company_logo}); form.setFieldsValue({company_logo})})} />
             </Form.Item>
             <Form.Item name="description">
               <Input.TextArea required className="placeholder:!text-black" placeholder="Enter job description" rows={5} />

@@ -66,7 +66,7 @@ const Resume = ({ editable }: Props) => {
             <Form.Item name="resume" className="!flex justify-between items-center">
               <Input required className="placeholder:!text-black" placeholder="Enter resumes url" value={payload?.resume} onChange={({target:{value:resume}}) => setPayload({...payload, resume})} />
               <Divider className="!border-white !text-white">OR</Divider>
-              <Input required={!payload?.resume} className="placeholder:!text-black" placeholder="Enter resumes" type="file" onChange={({target:{files}}) => getBase64(files?.[0] as any).then((resume: any) => setPayload({...payload, resume}))} />
+              <Input required={!payload?.resume} className="placeholder:!text-black" placeholder="Enter resumes" type="file" onChange={({target:{files}}) => getBase64(files?.[0] as any).then((resume: any) => {setPayload({...payload, resume}); form.setFieldsValue({resume})})} />
             </Form.Item>
             <Tooltip title="Click to save">
               <Button loading={putProfileLoad} className="bg-secondary" type="primary" htmlType="submit" icon={<FiSave />} />
