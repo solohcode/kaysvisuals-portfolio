@@ -8,6 +8,7 @@
     "preview": "vite preview",
     "ts:check": "tsc --noEmit",
     "build": "tsc && vite build",
+    "react": "react-scripts build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "deploy": "npm run build && mv build/index.html build/200.html && surge build qudus-odupitan.surge.sh"
   },
