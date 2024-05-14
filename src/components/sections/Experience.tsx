@@ -129,7 +129,7 @@ const Experience = ({ editable }: Props) => {
         <div className="mt-20 flex flex-col">
           <VerticalTimeline>
             {getExperiencesData
-              ?.sort((a,b) =>  new Date(b.start_date) - new Date(a.start_date))
+              ?.sort((a: any, b: any) => (Number(new Date(b?.start_date)) - Number(new Date(a?.start_date))))
               ?.map((experience: any, index: number) => (
               <ExperienceCard
                 key={index}
