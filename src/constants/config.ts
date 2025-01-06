@@ -42,12 +42,12 @@ type TConfig = {
 
 export const config: TConfig = {
   html: {
-    title: "Qudus Odupitan",
-    fullName: "O. Qudus",
-    email: "qudusodupitan@gmail.com",
+    title: "Kays Visuals",
+    fullName: "Babalola Lateef Kolade",
+    email: "salaudeenadedejihameed@gmail.com",
   },
   hero: {
-    name: "Qudus",
+    name: "Kolade",
     p: ["I am a data scientist", "I design and develop softwares"],
   },
   contact: {

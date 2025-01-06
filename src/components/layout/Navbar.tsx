@@ -107,7 +107,7 @@ const Navbar = ({ editable }: Props) => {
             >
               {/* <img src={logo} alt="logo" className="h-9 w-9 object-contain" /> */}
               <p className="flex cursor-pointer text-[18px] font-bold text-white ">
-                {`${getProfileData?.first_name || "Qudus"} ${getProfileData?.last_name || "Odupitan"}`}
+                {`${getProfileData?.first_name || "Kays"} ${getProfileData?.last_name || "Visuals"}`}
               </p>
             </Link>
           )}

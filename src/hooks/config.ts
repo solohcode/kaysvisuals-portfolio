@@ -7,12 +7,12 @@ import { getAnalytics } from "firebase/analytics";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  authDomain: "qudus-oluwasegun-portfolio.firebaseapp.com",
-  storageBucket: "qudus-oluwasegun-portfolio.appspot.com",
-  appId: "1:952168251952:web:fed5d1e2a99f7a05e063f5",
-  apiKey: "AIzaSyCVL0_Qjp0_YNAqEnhE1NqzxTs8Vj3b-Ak",
-  projectId: "qudus-oluwasegun-portfolio",
-  messagingSenderId: "952168251952",
+  storageBucket: "kaysviuals-portfolio.firebasestorage.app",
+  authDomain: "kaysviuals-portfolio.firebaseapp.com",
+  appId: "1:570886722008:web:3a9169b6884cd2fbe922ad",
+  apiKey: "AIzaSyDlr16lzeJbnxLx4KbeS0IFHLGuCwoItjA",
+  projectId: "kaysviuals-portfolio",
+  messagingSenderId: "570886722008",
 };
 
 // Initialize Firebase
